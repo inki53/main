@@ -36,22 +36,20 @@ col1, col2,col3= st.columns([1, 8, 1])
 with col1:
 
 
-    htmltext= """ <select name='select'>
-            <option value='value1'>Value 1</option>
-            <option value='value2' selected>Value 2</option>
-            <option value='value3'>Value 3</option>
-    </select>   """
-st.components.v1.html(htmltext, width=None, height=None, scrolling=False)
+    htmltext= """ <select class="selectpicker">
+  <option>PWWPd</option>
+  <option>Ketchup</option>
+  <option>Relish</option>
+</select>
+"""
+
+import streamlit.components.v1 as components
+components.html(htmltext, width=None, height=None, scrolling=False)
 
 with col2:
 
-    htmltext= """ <select name='select'>
-                <option value='value1'>Value 1</option>
-                <option value='value2' selected>Value 2</option>
-                <option value='value3'>Value 3</option>
-        </select>   """
-    st.components.v1.html(htmltext, width=None, height=None, scrolling=False)
-    
+   
+
     #st.title('ESTRATEGIAS TLP')
     # Usar Markdown con HTML para centrar el texto
     st.markdown("<h1 style='text-align: center'>ESTRATEGIAS TLP</h1>", unsafe_allow_html=True)
@@ -69,7 +67,46 @@ with col2:
     columnas_a_mostrar = ['Acciones','Descripcion']
     df_filtrado = df[(df['Bloque'] == Bloque_selected) & (df['Acciones'] == Acciones_selected)]
     df_filtrado_columnas=df_filtrado[columnas_a_mostrar]
+
+    opciones =Bloquelist # ['Opción 1', 'Opción 2', 'Opción 3', 'Opción 4']
     
+    html_select = '<select name="opciones" id="opciones-select">\n'
+    for opcion in opciones:
+        print(opcion)
+        html_select += '    <option value="{}">{}</option>\n'.format(opcion.lower().replace(' ', ''), opcion)
+    html_select += '</select>'
+
+    print(html_select)
+    #width: 200px; /* Ancho del select */
+    html_css="""<style>
+    #opciones-select {
+        background-color: #f0f0f0; /* Color de fondo */
+        color: #333; /* Color del texto */
+        padding: 10px; /* Espaciado interno */
+        border: 2px solid #ccc; /* Borde del select */
+        border-radius: 5px; /* Bordes redondeados */
+        font-size: 16px; /* Tamaño del texto */
+        width: 100%; /* Ancho del select */
+        cursor: pointer; /* Cambiar el cursor a una mano al pasar sobre el select */
+    }
+
+    /* Cambiar la apariencia de las opciones al pasar el mouse */
+    #opciones-select:hover {
+        background-color: #e9e9e9;
+    }
+
+    /* Estilos para cuando el select está enfocado */
+    #opciones-select:focus {
+        outline: none; /* Eliminar el contorno predeterminado */
+        border-color: #9ecaed;
+        box-shadow: 0 0 10px #9ecaed;
+    }
+</style>
+"""
+   
+    htmltext=html_select+html_css
+    print(htmltext)
+    st.components.v1.html(htmltext, width=None, height=None, scrolling=False)
     with st.container():
         st.dataframe(df_filtrado_columnas, hide_index=True,use_container_width=True)
 

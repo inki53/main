@@ -33,8 +33,25 @@ df.columns = ['Id', 'Bloque','Acciones','Descripcion']
 
 col1, col2,col3= st.columns([1, 8, 1])
 
+with col1:
+
+
+    htmltext= """ <select name='select'>
+            <option value='value1'>Value 1</option>
+            <option value='value2' selected>Value 2</option>
+            <option value='value3'>Value 3</option>
+    </select>   """
+st.components.v1.html(htmltext, width=None, height=None, scrolling=False)
+
 with col2:
 
+    htmltext= """ <select name='select'>
+                <option value='value1'>Value 1</option>
+                <option value='value2' selected>Value 2</option>
+                <option value='value3'>Value 3</option>
+        </select>   """
+    st.components.v1.html(htmltext, width=None, height=None, scrolling=False)
+    
     #st.title('ESTRATEGIAS TLP')
     # Usar Markdown con HTML para centrar el texto
     st.markdown("<h1 style='text-align: center'>ESTRATEGIAS TLP</h1>", unsafe_allow_html=True)

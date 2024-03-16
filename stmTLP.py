@@ -36,18 +36,19 @@ col1, col2,col3= st.columns([1, 8, 1])
 with col1:
 
 
-    htmltext= """ <select class="selectpicker">
+ '''   htmltext= """ <select class="selectpicker">
   <option>PWWPd</option>
   <option>Ketchup</option>
   <option>Relish</option>
 </select>
-"""
+"""''''
+
+#https://stackoverflow.com/questions/69492406/streamlit-how-to-display-buttons-in-a-single-line
 
 import streamlit.components.v1 as components
-components.html(htmltext, width=None, height=None, scrolling=False)
+#components.html(htmltext, width=None, height=None, scrolling=False)     Select Option
 
 with col2:
-
    
 
     #st.title('ESTRATEGIAS TLP')
@@ -59,8 +60,40 @@ with col2:
     df_filtrado_bloque = df[df['Bloque'] ==Bloque_selected]
 
     Accioneslist=df_filtrado_bloque['Acciones'].unique()
-    Acciones_selected=st.selectbox('Selecciona una Acción: ', Accioneslist)
-    df_filtrado_acciones = df[df['Bloque'] ==Bloque_selected]
+
+    Accioneslist_huge=False
+    
+    if len(Accioneslist)>10:
+        Accioneslist_huge=True
+    if  Accioneslist_huge:
+
+        #Con 2 selectBox, como streamlit activa teclado cuando más de 10 opciones, dividimos las opciones en 2
+       
+        Acciones_list1=[]
+        Acciones_list2=[]
+        if Accioneslist%2==0:
+            imparell_opciones=False       
+        else:
+            imparell_opciones=True   
+        if Accioneslist>10:
+            i=0
+            for i in range(0,len(Accioneslist-1)):
+                if i<(len(Acciones_list1)-1)/2:
+                    Acciones_list1.append=Accioneslist[i]
+                else:
+                    Acciones_list2.append=Accioneslist[i]
+        option1=st.selectbox('Selecciona una Acción: ', Acciones_list1)
+        option2=st.selectbox('Selecciona una Acción: ', Acciones_list1)
+        st.write(option1)
+        st.write(option2)
+    
+    else:
+
+        #Con 1 selectbox, streamlit activa teclado cuando más de 10 componentes
+
+        Acciones_selected=st.selectbox('Selecciona una Acción: ', Accioneslist)
+
+        df_filtrado_acciones = df[df['Bloque'] ==Bloque_selected]
 
 
     # Filtrar el DataFrame basado en las selecciones y Seleccionar y mostrar solo ciertas columnas

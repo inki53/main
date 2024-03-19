@@ -42,10 +42,10 @@ import streamlit.components.v1 as components
 st.markdown("""
         <style>
                .block-container {
-                    padding-top: 1rem;
+                    padding-top: 3rem;
                     padding-bottom: 0rem;
-                    padding-left: 5rem;
-                    padding-right: 5rem;#
+                    padding-left: 1rem;
+                    padding-right: 1rem;#
                 }
         </style>
         

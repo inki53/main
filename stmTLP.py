@@ -50,7 +50,7 @@ st.markdown("""
         </style>
         
         """, unsafe_allow_html=True)
-st.markdown("<h5 style='text-align: wide'>ESTRATEGIAS TLP</h1>", unsafe_allow_html=True)
+st.markdown("<h5 style='text-align: center'>ESTRATEGIAS TLP</h1>", unsafe_allow_html=True)
 
 col1, col2,col3= st.columns([1, 8, 1])
 

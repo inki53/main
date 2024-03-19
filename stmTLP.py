@@ -28,7 +28,7 @@ conn.close()
 df= pd.DataFrame(resultados)
 df.columns = ['Id', 'Bloque','Acciones','Descripcion']
 
-col1, col2,col3= st.columns([1, 8, 1])
+#col1, col2,col3= st.columns([1, 8, 1])
 
 
 #https://stackoverflow.com/questions/69492406/streamlit-how-to-display-buttons-in-a-single-line
@@ -45,7 +45,7 @@ st.markdown("""
                     padding-top: 1rem;
                     padding-bottom: 0rem;
                     padding-left: 5rem;
-                    padding-right: 5rem;
+                    padding-right: 5rem;#
                 }
         </style>
         

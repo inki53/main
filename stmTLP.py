@@ -38,12 +38,24 @@ import streamlit.components.v1 as components
 
 #st.title('ESTRATEGIAS TLP')
 # Usar Markdown con HTML para centrar el texto
+
+st.markdown("""
+        <style>
+               .block-container {
+                    padding-top: 1rem;
+                    padding-bottom: 0rem;
+                    padding-left: 5rem;
+                    padding-right: 5rem;
+                }
+        </style>
+        
+        """, unsafe_allow_html=True)
 st.markdown("<h5 style='text-align: center'>ESTRATEGIAS TLP</h1>", unsafe_allow_html=True)
+
 col1, col2,col3= st.columns([1, 8, 1])
 
 Bloquelist= df['Bloque'].unique()
              
-#with col2:
 
 Bloque_selected = st.selectbox('Selecciona un Bloque: ',Bloquelist,key='Bloque')
 df_filtrado_bloque = df[df['Bloque'] ==Bloque_selected]
